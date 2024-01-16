@@ -1,9 +1,9 @@
 name: Build and Deploy
 
 on:
-push:
-  branches:
-    - main  # Set this to your default branch
+  push:
+    branches:
+      - main  # Replace with your default branch if different
 
 jobs:
   build_and_deploy:
@@ -15,17 +15,18 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '14' # Set this to the Node.js version you use
+        node-version: '14' # Replace with your Node.js version
+
+    - name: Install dependencies
+      run: npm install
 
     - name: Build
       run: npx next build
 
-    - name: Install and Build
-      run: |
-        npm install
-        npm run build
-    
-    - name: Deploy
+    - name: Export Next.js static files
+      run: npm run export
+
+    - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@4.1.4
       with:
         branch: gh-pages  # The branch the action should deploy to.
