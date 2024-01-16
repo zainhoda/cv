@@ -23,9 +23,6 @@ jobs:
     - name: Build
       run: npx next build
 
-    - name: Export Next.js static files
-      run: npm run export
-
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@4.1.4
       with:
